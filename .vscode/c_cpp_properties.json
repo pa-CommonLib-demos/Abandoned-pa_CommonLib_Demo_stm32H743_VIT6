@@ -4,17 +4,16 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/prj/Src",
-                "${workspaceFolder}/prj/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS",
-                "${workspaceFolder}/prj/Middlewares/Third_Party/FreeRTOS/Source/include",
-                "${workspaceFolder}/prj/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
-                
+                "${workspaceFolder}/Stm32H743vitxPrj/Src",
+                "${workspaceFolder}/Stm32H743vitxPrj/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS",
+                "${workspaceFolder}/Stm32H743vitxPrj/Middlewares/Third_Party/FreeRTOS/Source/include",
+                "${workspaceFolder}/Stm32H743vitxPrj/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "STM32H750xx",
+                "STM32H743xx",
                 "USE_HAL_DRIVER",
                 "__STATIC_INLINE=static"
             ],

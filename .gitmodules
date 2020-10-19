@@ -1,0 +1,3 @@
+[submodule "Stm32H743vitxPrj/Src/pa_CommonLib"]
+	path = Stm32H743vitxPrj/Src/pa_CommonLib
+	url = https://github.com/ActivePeter/pa_CommonLib.git
