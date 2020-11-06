@@ -1,7 +1,15 @@
 #ifndef __PA_MAIN_H__
 #define __PA_MAIN_H__
+#ifdef __cplusplus
 
-void pa_Main();
-//将此函数放入定时器1ms中断
-void tim_1ms_tick();
+extern "C"
+{
+#endif
+    void pa_Main();
+
+#ifdef __cplusplus
+}
+
+#endif
+
 #endif // __PA_MAIN_H__
