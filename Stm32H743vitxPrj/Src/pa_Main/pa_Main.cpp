@@ -27,7 +27,8 @@ SvpwmFoc focMotor1;
 // int encoder2_delta = 0;
 // extern TIM_HandleTypeDef htim3, htim4, htim5;
 //
-
+extern uint16_t Global_Touch_X;
+extern uint16_t Global_Touch_Y;
 void pa_Main()
 {
     // pa_set1MsCallback(tim_1ms_tick);
@@ -88,10 +89,10 @@ void pa_Main()
         //     adc = ads112c04.readADC();
         // }
         { //lv
-            uint16_t coord[2];
-            pa_touchScreen::instance.readRaw(coord);
+            // uint16_t coord[2];
+            // pa_touchScreen::instance.readRaw(coord);
 
-            GUI::updateEncoder(coord[0], coord[1], run, (int)focMotor1.getCurEularAngle());
+            GUI::updateEncoder(Global_Touch_X, Global_Touch_Y, run, (int)focMotor1.getCurEularAngle());
             // GUI::updateEncoder(encoder1, encoder1_delta, encoder2, encoder2_delta);
             // GUI::updateAdc(focMotor1.getCurEularAngle());
             lv_task_handler(); //lvgl刷新显示内容
@@ -122,7 +123,7 @@ void tim_100us_tick()
     if (state)
     {
         focMotor1.controlTick();
-        focMotor1.plusAngleTest(200, 30000);
+        focMotor1.plusAngleTest(200, 5000);
     }
     state = !state;
 }

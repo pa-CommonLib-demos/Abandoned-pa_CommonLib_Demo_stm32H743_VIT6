@@ -82,6 +82,8 @@ void pa_Lvgl_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *
     lv_disp_flush_ready(disp); /* Indicate you are ready with the flushing*/
 }
 
+uint16_t Global_Touch_X = 0;
+uint16_t Global_Touch_Y = 0;
 void pa_Lvgl_touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
 {
 
@@ -91,8 +93,13 @@ void pa_Lvgl_touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
         uint16_t coord[2];
         pa_touchScreen::instance.readRaw(coord);
         pa_touchScreen::instance.turnRawToScreen(coord);
-        data->point.x = coord[0];
-        data->point.y = coord[1];
+        Global_Touch_X = coord[0];
+        Global_Touch_Y = coord[1];
+        if (coord[0] != 0 && coord[1] != 0)
+        {
+            data->point.x = coord[0];
+            data->point.y = coord[1];
+        }
         // touchpad_get_xy(&data->point.x, &data->point.y);
     }
 
