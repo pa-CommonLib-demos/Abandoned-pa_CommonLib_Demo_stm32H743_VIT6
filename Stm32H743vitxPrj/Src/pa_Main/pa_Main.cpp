@@ -1,20 +1,22 @@
-#include "pa_CommonLib/src/drv/pa_CommonDrv/pa_CommonDrv.h"
-#include "pa_CommonLib/src/service/display/ili9341/pa_ILI9341.h"
+
 #include "pa_Main.h"
 #include "pa_Motor/pa_Motor.h"
+
 #include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
-#include "pa_CommonLib/src/app/SvpwmFoc/SvpwmFoc.h"
-#include "pa_Lvgl/pa_Lvgl.h"
-#include "pa_CommonLib/src/service/input/touchScreen/pa_touchScreen.h"
-#include "pa_CommonLib/src/service/TI_Chips/Ads_112c04/Ads_112c04.h"
-#include "pa_CommonLib/src/service/graphic/lvgl/lvgl.h"
+
 #include "pa_Lvgl/GUIs/MainGUI/MainGUI.h"
+#include "pa_CommonLib/src/service/graphic/lvgl/lvgl.h"
+#include "pa_Lvgl/pa_Lvgl.h"
+
+#include "pa_UsedDevice/pa_UsedDevice.h"
+
+using namespace pa_UsedDevice;
 
 void tim_100us_tick();
 void tim_1ms_tick();
 int cnt = 0;
 int run = 0;
-SvpwmFoc focMotor1;
+
 // int encoder1 = 0;
 // int encoder1_delta = 0;
 // int encoder2 = 0;
@@ -42,6 +44,9 @@ void pa_Main()
     // pa_set1MsCallback(tim_1ms_tick);
     pa_setTimerCallback(tim_100us_tick, tim_1ms_tick);
     pa_PWM::initPWMs();
+
+    as5048a_1.init(1);
+
     focMotor1.init(0, 1, 2);
     // pa_PWM::initPWMs();
     // HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
@@ -51,8 +56,6 @@ void pa_Main()
     // LCD_Init();
     // LCD_Fill(0,0,100,100,GREEN);
     // LCD_ShowString(0,0,(const unsigned char *)"helloWorld",GREEN,BLACK,12,0);
-    pa_ILI9341 &ili9341 = pa_ILI9341::instance;
-    pa_touchScreen &touch = pa_touchScreen::instance;
 
     // Ads_112c04 &ads112c04 = Ads_112c04::instance;
 

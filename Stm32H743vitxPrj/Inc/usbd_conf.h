@@ -37,7 +37,7 @@ extern "C"
 #include "stm32h7xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "cmsis_os.h"
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER
@@ -95,10 +95,10 @@ extern "C"
 /* Memory management macros */
 
 /** Alias for memory allocation. */
-#define USBD_malloc malloc
+#define USBD_malloc pvPortMalloc
 
 /** Alias for memory release. */
-#define USBD_free free
+#define USBD_free vPortFree
 
 /** Alias for memory set. */
 #define USBD_memset memset

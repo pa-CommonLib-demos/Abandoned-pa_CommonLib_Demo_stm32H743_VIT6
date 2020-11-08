@@ -84,12 +84,13 @@ void MX_FREERTOS_Init(void)
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
+
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 6001);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 10000);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -106,9 +107,12 @@ void MX_FREERTOS_Init(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const *argument)
 {
+  osDelay(1000);
   /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
 
+  osDelay(1000);
+  MX_USB_DEVICE_Init();
+  osDelay(1000);
   /* USER CODE BEGIN StartDefaultTask */
   pa_Main();
   /* Infinite loop */
