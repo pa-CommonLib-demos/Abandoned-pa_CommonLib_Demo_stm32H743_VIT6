@@ -1,10 +1,12 @@
 
-extern "C"
-{
+
 #include "pa_CommonLib/src/service/graphic/lvgl/lvgl.h"
 #include "MainGUI.h"
+extern "C"
+{
 #include "stdio.h"
 }
+
 namespace GUI
 {
     lv_obj_t *btn_SelectMode_PinMap;

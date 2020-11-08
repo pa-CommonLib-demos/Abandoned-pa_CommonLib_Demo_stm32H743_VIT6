@@ -11,7 +11,7 @@ bool pa_Lvgl_touchpad_read_C(lv_indev_t *indev, lv_indev_data_t *data)
     return false;
 }
 
-void pa_Lvgl_init()
+void pa_Lvgl_init_C()
 {
     static lv_disp_buf_t disp_buf;
     static lv_color_t buf[LV_HOR_RES_MAX * LV_VER_RES_MAX / 10]; /*Declare a buffer for 1/10 screen size*/

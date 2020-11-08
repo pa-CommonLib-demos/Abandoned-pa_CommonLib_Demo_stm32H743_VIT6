@@ -1,11 +1,11 @@
 
+#include "pa_Lvgl.h"
 extern "C"
 {
-#include "pa_Lvgl.h"
 #include "pa_CommonLib/src/service/display/ili9341/pa_ILI9341.h"
-
 #include "pa_CommonLib/src/service/input/touchScreen/pa_touchScreen.h"
 #include <stdlib.h>
+#include "pa_Lvgl_C.h"
 }
 // void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p);
 // bool my_touchpad_read(lv_indev_t *indev, lv_indev_data_t *data);
@@ -104,4 +104,9 @@ void pa_Lvgl_touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
     }
 
     // return false; /*Return `false` because we are not buffering and no more data to read*/
+}
+
+void pa_Lvgl_init()
+{
+    pa_Lvgl_init_C();
 }

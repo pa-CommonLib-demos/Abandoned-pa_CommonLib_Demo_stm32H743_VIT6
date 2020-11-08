@@ -4,17 +4,11 @@
 #include "pa_Motor/pa_Motor.h"
 #include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
 #include "pa_CommonLib/src/app/SvpwmFoc/SvpwmFoc.h"
-extern "C"
-{
-    // #include "pa_CommonLib/src/service/display/st7789/lcd.h"
-
+#include "pa_Lvgl/pa_Lvgl.h"
 #include "pa_CommonLib/src/service/input/touchScreen/pa_touchScreen.h"
 #include "pa_CommonLib/src/service/TI_Chips/Ads_112c04/Ads_112c04.h"
 #include "pa_CommonLib/src/service/graphic/lvgl/lvgl.h"
-#include "pa_Lvgl/pa_Lvgl_C.h"
-#include "stdio.h"
 #include "pa_Lvgl/GUIs/MainGUI/MainGUI.h"
-}
 
 void tim_100us_tick();
 void tim_1ms_tick();
@@ -29,6 +23,20 @@ SvpwmFoc focMotor1;
 //
 extern uint16_t Global_Touch_X;
 extern uint16_t Global_Touch_Y;
+
+namespace TimTasks
+{
+    bool flag_1s = false;
+    void loop()
+    {
+        if (flag_1s)
+        {
+            flag_1s = false;
+            pa_Debug("1s is ticked\r\n");
+        }
+    }
+} // namespace TimTasks
+
 void pa_Main()
 {
     // pa_set1MsCallback(tim_1ms_tick);
@@ -81,6 +89,8 @@ void pa_Main()
     // encoder1_delta = encoder2_delta = 0;
     for (;;)
     {
+
+        TimTasks::loop();
         // pa_Motor::setSpeed(0, cnt * 1.0 / 1000);
         // pa_Motor::setSpeed(1, cnt * 1.0 / 1000);
         // double adc;
@@ -134,6 +144,7 @@ void tim_1ms_tick()
     if (cnt == 1000)
     {
         cnt = 0;
+        TimTasks::flag_1s = true;
         run++;
     }
 }
