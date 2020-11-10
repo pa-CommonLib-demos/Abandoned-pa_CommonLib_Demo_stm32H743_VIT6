@@ -5,6 +5,7 @@
 #include "pa_CommonLib/src/service/input/touchScreen/pa_touchScreen.h"
 #include "pa_CommonLib/src/service/TI_Chips/Ads_112c04/Ads_112c04.h"
 #include "pa_CommonLib/src/service/display/ili9341/pa_ILI9341.h"
+
 #include "pa_CommonLib/src/service/sensors/attitude/AS5048A/AS5048A.h"
 namespace pa_UsedDevice
 {

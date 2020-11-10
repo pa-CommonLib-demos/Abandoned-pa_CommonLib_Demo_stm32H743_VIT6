@@ -9,6 +9,7 @@
 #include "pa_Lvgl/pa_Lvgl.h"
 
 #include "pa_UsedDevice/pa_UsedDevice.h"
+#include "pa_CommonLib/src/util/pa_DataProcessor/pa_DataProcessor.h"
 
 using namespace pa_UsedDevice;
 
@@ -34,7 +35,23 @@ namespace TimTasks
         if (flag_1s)
         {
             flag_1s = false;
-            pa_Debug("1s is ticked\r\n");
+            // pa_Debug("1s is ticked\r\n");
+            {
+                char str[20];
+                int rotation = as5048a_1.getRawRotation();
+                if (as5048a_1.error())
+                {
+                    pa_Debug("rotation error  ");
+                }
+                uint16_t state = as5048a_1.getState();
+                if (as5048a_1.error())
+                {
+                    pa_Debug("state error\r\n");
+                }
+                // pa_delayMs(1);
+                pa_snprintf(str, 20, "d %d %4x\r\n", rotation, state);
+                pa_Debug(str);
+            }
         }
     }
 } // namespace TimTasks

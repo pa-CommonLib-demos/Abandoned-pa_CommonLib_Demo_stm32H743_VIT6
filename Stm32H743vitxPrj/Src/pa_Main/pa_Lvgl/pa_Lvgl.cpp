@@ -1,9 +1,10 @@
 
 #include "pa_Lvgl.h"
-extern "C"
-{
 #include "pa_CommonLib/src/service/display/ili9341/pa_ILI9341.h"
 #include "pa_CommonLib/src/service/input/touchScreen/pa_touchScreen.h"
+extern "C"
+{
+
 #include <stdlib.h>
 #include "pa_Lvgl_C.h"
 }
