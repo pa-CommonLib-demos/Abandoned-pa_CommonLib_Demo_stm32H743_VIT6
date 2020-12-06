@@ -23,66 +23,28 @@
 #ifndef STM32_H7
 #define STM32_H7
 #endif
-
-// #ifndef TM4C123G
-// #define TM4C123G
-// #endif
 /***********************************************
  * 
  * 
- * 显示器外设选择宏
+ *   Select App.
  * 
  * 
  * **********************************************/
-#ifndef DISPLAY_USE_ILI9341
-#define DISPLAY_USE_ILI9341
+#define RobotArmApp_demo_Test
+// #define SvpwmFoc_demo_Test
+
+/***********************************************
+ * 
+ * 
+ *   Include after select
+ *
+ * 
+ * ********************************************/
+#ifdef RobotArmApp_demo_Test
+#include "pa_CommonLib/src/app/robotArmApp/demos/Test/Defines.h"
 #endif
-
-// #ifndef DISPLAY_USE_SSD1306
-// #define DISPLAY_USE_SSD1306
-// #endif
-
-// #ifndef DISPLAY_USE_ST7789
-// #define DISPLAY_USE_ST7789
-// #endif
-
-/***********************************************
- * 
- * 
- * 图形库选择宏
- * 
- * 
- * **********************************************/
-
-#ifndef GRAPHIC_USE_LVGL
-#define GRAPHIC_USE_LVGL
+#ifdef SvpwmFoc_demo_Test
+#include "pa_CommonLib/src/app/SvpwmFoc/demos/Test/Defines.h"
 #endif
-
-/***********************************************
- * 
- * 
- * 输入外设选择宏
- * 
- * 
- * **********************************************/
-// #ifndef INPUT_USE_KEYPAD
-// #define INPUT_USE_KEYPAD
-// #endif
-
-#ifndef INPUT_USE_TOUCHSCREEN
-#define INPUT_USE_TOUCHSCREEN
-#endif
-
-/***********************************************
- * 
- * 
- * 输入外设选择宏
- * 
- * 
- * **********************************************/
-
-#define pa_MEM_CUSTOM_INCLUDE "FreeRTOS.h" /*Header for the dynamic memory function*/
-#define pa_MEM_CUSTOM_ALLOC pvPortMalloc   /*Wrapper to malloc*/
-#define pa_MEM_CUSTOM_FREE vPortFree       /*Wrapper to free*/
 
 #endif // __PA_DEFINES_H__
